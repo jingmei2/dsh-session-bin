@@ -1,0 +1,68 @@
+{
+  "name": "@jingmei2/dsh-session-trash",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Physically delete DeepSeek Harness Sessions with an undoable recycle bin: move a Session log out of its workspace, restore it, or purge it for good.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "session",
+    "delete",
+    "recycle-bin",
+    "trash",
+    "workspace"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "magi",
+    "email": "jingmei2dot@gmail.com",
+    "url": "https://github.com/jingmei2"
+  },
+  "homepage": "https://github.com/jingmei2/dsh-session-trash#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jingmei2/dsh-session-trash.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jingmei2/dsh-session-trash/issues"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "core.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-workspace"
+      ]
+    }
+  }
+}

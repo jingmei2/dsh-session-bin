@@ -1,0 +1,12 @@
+# dsh-session-trash bundle patch: mounts the session-trash plugin into the host
+# composition of a dsh profile.
+#
+# Install: `dsh plugin --profile <name> add @jingmei2/dsh-session-trash` —
+# the command pnpm-installs the package into the profile and reconciles it into
+# the profile's `dsh.profile.bundles` layer list through this file.
+- insert:
+    - id: session-trash
+      # Node-resolvable package name — must stay in sync with package.json `name`.
+      # Quoted because `@` is a reserved indicator in YAML.
+      name: '@jingmei2/dsh-session-trash'
+      config: {}

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Session Recycle Bin",
+    "description": "Delete a Session's log files for real, with a recycle bin that can put them back. Adds a delete row to every Session menu and a bin page under Settings."
+  }
+}
