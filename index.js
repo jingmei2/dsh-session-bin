@@ -1,5 +1,5 @@
 /**
- * dsh-session-trash — Host half.
+ * dsh-session-bin — Host half.
  *
  * Exposes one operation set (list / trash / restore / purge / empty) through
  * two callers: the browser UI's loopback HTTP route and the agent's

@@ -37,7 +37,7 @@ await import('../client.js');
 
 test('the client module loads and registers its three surfaces', () => {
   assert.ok(loaded, 'the module registered a factory');
-  assert.equal(loaded.id, 'dsh-session-trash');
+  assert.equal(loaded.id, 'dsh-session-bin');
 
   const module = loaded.factory((name) => {
     if (name === 'react') return React;

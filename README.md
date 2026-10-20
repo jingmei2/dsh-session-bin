@@ -1,15 +1,15 @@
-# 会话回收站（dsh-session-trash）
+# 会话回收站（dsh-session-bin）
 
 真正删除 DeepSeek Harness 会话的日志文件，并提供一个可以撤销的回收站。
 
 ## 安装
 
 ```bash
-dsh plugin --profile <profile> add @jingmei2/dsh-session-trash
+dsh plugin --profile <profile> add @jingmei2/dsh-session-bin
 ```
 
 装完重启应用（Host 半改动需要重启，Client 半刷新页面即可）。也可以在「插件市场」里按包名
-`@jingmei2/dsh-session-trash` 搜索安装。
+`@jingmei2/dsh-session-bin` 搜索安装。
 
 DSH 本身只支持「归档」：会话行从列表里消失，但 `~/.dsh/sessions` 下的日志原样保留。
 这个插件把「物理删除」补上，并且删除是**可撤销**的：

@@ -1,5 +1,5 @@
 {
-  "name": "@jingmei2/dsh-session-trash",
+  "name": "@jingmei2/dsh-session-bin",
   "version": "0.1.0",
   "type": "module",
   "description": "Physically delete DeepSeek Harness Sessions with an undoable recycle bin: move a Session log out of its workspace, restore it, or purge it for good.",
@@ -19,13 +19,13 @@
     "email": "jingmei2dot@gmail.com",
     "url": "https://github.com/jingmei2"
   },
-  "homepage": "https://github.com/jingmei2/dsh-session-trash#readme",
+  "homepage": "https://github.com/jingmei2/dsh-session-bin#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jingmei2/dsh-session-trash.git"
+    "url": "git+https://github.com/jingmei2/dsh-session-bin.git"
   },
   "bugs": {
-    "url": "https://github.com/jingmei2/dsh-session-trash/issues"
+    "url": "https://github.com/jingmei2/dsh-session-bin/issues"
   },
   "engines": {
     "node": "^22.19.0 || >=24.0.0",

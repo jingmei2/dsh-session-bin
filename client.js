@@ -1,12 +1,12 @@
 /**
- * dsh-session-trash — Client half.
+ * dsh-session-bin — Client half.
  *
  * Two surfaces, one operation set:
  *   - a "…" menu row on every Session row (physical delete, into the recycle bin)
  *   - a Settings page that lists the bin and restores / purges entries
  */
 window.__ModuleLoader__.load({
-  id: 'dsh-session-trash',
+  id: 'dsh-session-bin',
   factory(require) {
     const React = require('react');
     const h = React.createElement;
@@ -23,7 +23,7 @@ window.__ModuleLoader__.load({
     }
 
     const API = '/api/session-trash';
-    const CHANGE_EVENT = 'dsh-session-trash:changed';
+    const CHANGE_EVENT = 'dsh-session-bin:changed';
 
     /* ------------------------------------------------------------ locale */
 
