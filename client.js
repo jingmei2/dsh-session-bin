@@ -6,7 +6,7 @@
  *   - a Settings page that lists the bin and restores / purges entries
  */
 window.__ModuleLoader__.load({
-  id: 'dsh-session-bin',
+  id: '@jingmei2/dsh-session-bin',
   factory(require) {
     const React = require('react');
     const h = React.createElement;
@@ -23,7 +23,7 @@ window.__ModuleLoader__.load({
     }
 
     const API = '/api/session-trash';
-    const CHANGE_EVENT = 'dsh-session-bin:changed';
+    const CHANGE_EVENT = '@jingmei2/dsh-session-bin:changed';
 
     /* ------------------------------------------------------------ locale */
 
