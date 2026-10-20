@@ -119,7 +119,7 @@
   },
   "dshhub": {
     "schemaVersion": 1,
-    "displayName": "Session Trash",
+    "displayName": "Session Bin",
     "summary": "Physically delete DeepSeek Harness Sessions through an undoable recycle bin — trash, restore, or purge for good, from the sidebar, the settings page, or the session_trash agent tool.",
     "categories": [
       "会话管理",
