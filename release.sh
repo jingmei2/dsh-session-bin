@@ -45,7 +45,7 @@ ok "git clean ($(git rev-parse --short HEAD))"
 
 bold "3/7 单元测试"
 if node --test test/ >/tmp/dsh-session-bin-test.log 2>&1; then
-  ok "$(grep -E '^# (pass|fail)' /tmp/dsh-session-bin-test.log | tr '\n' ' ')"
+  ok "$(grep -aoE '(pass|fail) [0-9]+' /tmp/dsh-session-bin-test.log | tail -2 | tr '\n' ' ')"
 else
   tail -25 /tmp/dsh-session-bin-test.log
   die "测试未通过，完整日志 /tmp/dsh-session-bin-test.log"
