@@ -84,8 +84,9 @@ command -v gh >/dev/null 2>&1 || { warn "未安装 gh，跳过等待；进度见
 RUN=""; SHA=$(git rev-parse HEAD)
 for _ in 1 2 3 4 5 6; do
   # 按 headSha 精确匹配本次提交，避免取到上一次的 run
-  RUN=$(SHA="$SHA" gh run list --workflow "$WORKFLOW" --limit 10 --json databaseId,headSha 2>/dev/null \
-    | python3 -c "import sys,json,os;sha=os.environ['SHA'];rs=json.load(sys.stdin);print(next((r['databaseId'] for r in rs if r.get('headSha')==sha),''))" 2>/dev/null || true)
+  # 注意：sha 必须作为参数传给 python3，`SHA=… cmd | other` 的前缀只作用于 cmd 本身
+  RUN=$(gh run list --workflow "$WORKFLOW" --limit 10 --json databaseId,headSha 2>/dev/null \
+    | python3 -c "import sys,json;sha=sys.argv[1];rs=json.load(sys.stdin);print(next((r['databaseId'] for r in rs if r.get('headSha')==sha),''))" "$SHA" 2>/dev/null || true)
   [ -n "$RUN" ] && break
   sleep 5
 done
