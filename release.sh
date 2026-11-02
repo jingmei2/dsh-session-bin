@@ -76,10 +76,25 @@ if [ $RC -ne 0 ]; then
 fi
 
 bold "7/7 线上校验 + git 归档"
-LOCAL=$(npm pack --json --pack-destination /tmp 2>/dev/null | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s)[0].shasum))")
-LIVE=$(npm view "$PKG@$NEW" dist.shasum --registry "$REG" 2>/dev/null | tail -1)
-if [ "$LOCAL" = "$LIVE" ]; then ok "shasum 一致 $LIVE"; else warn "shasum 不一致（本地 $LOCAL / 线上 $LIVE）"; fi
-ok "latest = $(npm view "$PKG" dist-tags.latest --registry "$REG" 2>/dev/null)"
+LOCAL=$(npm pack --json --pack-destination /tmp 2>/dev/null \
+  | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s)[0].shasum))" \
+  | tail -1 || true)
+# registry 有数十秒审核期，索引完成前 npm view 必然失败。
+# 这里必须容错：校验失败只警告，绝不阻断后面的 commit/tag/push。
+LIVE=""
+for i in 1 2 3 4 5 6 7 8 9 10 11 12; do
+  LIVE=$(npm view "$PKG@$NEW" dist.shasum --registry "$REG" 2>/dev/null | tail -1 || true)
+  [ -n "$LIVE" ] && [ "$LIVE" = "$LOCAL" ] && break
+  [ "$i" -lt 12 ] && sleep 5
+done
+if [ -n "$LIVE" ] && [ "$LOCAL" = "$LIVE" ]; then
+  ok "shasum 一致 $LIVE（第 ${i} 次轮询）"
+elif [ -z "$LIVE" ]; then
+  warn "线上尚未索引到 $NEW，跳过 shasum 校验（发布本身已成功）"
+else
+  warn "shasum 不一致（本地 $LOCAL / 线上 $LIVE）"
+fi
+ok "latest = $(npm view "$PKG" dist-tags.latest --registry "$REG" 2>/dev/null || true)"
 
 git add -A
 git commit -q -m "release: v$NEW"
