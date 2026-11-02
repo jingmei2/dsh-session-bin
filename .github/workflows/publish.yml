@@ -41,8 +41,10 @@ jobs:
             exit 1
           fi
 
+      # 用显式 glob：Node 24 把 `node --test test/` 的目录参数当模块去 require，
+      # 直接 MODULE_NOT_FOUND；Node 26 才支持目录发现。glob 在两者下都成立。
       - name: 单元测试
-        run: node --test test/
+        run: node --test test/*.test.mjs
 
       - name: 发布
         run: npm publish
