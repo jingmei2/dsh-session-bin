@@ -1,6 +1,6 @@
 {
   "name": "@jingmei2/dsh-session-bin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Physically delete DeepSeek Harness Sessions with an undoable recycle bin: move a Session log out of its workspace, restore it, or purge it for good.",
   "keywords": [
